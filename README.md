@@ -232,5 +232,5 @@ private void getAppDetail(String id,String version){
 }
 ```
 ####运行结果
-![screen one](https://github.com/peace710/aidl/blob/master/IPC/image1.png =360x640)
-![screen two](https://github.com/peace710/aidl/blob/master/IPC/image2.png =360x640)
+![screen one](https://github.com/peace710/aidl/blob/master/IPC/image1.png)
+![screen two](https://github.com/peace710/aidl/blob/master/IPC/image2.png)
