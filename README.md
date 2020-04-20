@@ -1,8 +1,8 @@
 # aidl
-####Android AIDL
+#### Android AIDL
 AIDL的中文名是Android接口定义语言，用来实现进程之间的数据的共享传递。
  
-####AIDL支持的数据类型
+#### AIDL支持的数据类型
 基本数据类型（int、long、char、boolean、double等）；
 String和CharSequence；
 List：只支持ArrayList，里面的每个元素都必须能够被AIDL支持；
@@ -11,7 +11,7 @@ Parcelable：所有实现了Parcelable接口的对象；
 AIDL：所有的AIDL接口本身也可以在AIDL文件中使用。
 除此之外，自定义的Parcelable对象和AIDL对象必须要显式import进来
 
-####AIDL接口的创建
+#### AIDL接口的创建
 需要创建一个包含.aidl后缀的文件，在其中声明一些接口
 
 ```
@@ -61,13 +61,13 @@ package com.apps.request;
 parcelable GetAppDetailRequest;
 ```
 
-####注：
+#### 注：
 AIDL中除了基本数据类型，其他类型的参数必须标上方向：in、out或inout
 in表示输入型参数
 out表示输出型参数
 inout表示输入输出参数
 
-####远程服务端Service的实现
+#### 远程服务端Service的实现
 首先需要对服务端的AIDL接口进行实现，然后在Service的onBind方法将其返回
 ```
 public class IPCService extends Service {
@@ -143,7 +143,7 @@ public class ServiceStub extends IService.Stub {
 
 }
 ```
-####注：
+#### 注：
 由于AIDL方法是在服务端的Binder线程池执行，因此当多个客户端同时访问时，会存在多线程操作，所以需要在AIDL方法处理线程同步。
 
 在AndroidManifest.xml文件中需要对Service进行配置
@@ -156,13 +156,13 @@ public class ServiceStub extends IService.Stub {
 </service>
 ```
 
-####客户端的实现
+#### 客户端的实现
 服务端在编译后，会在app/build/generated/source/debug下生成对应AIDL接口的java文件，需要将其以及使用到的相关的Java类一并拷贝到客户端工程，必须确保服务端与客户端这些类的包名，否则服务端客户端无法正确反序列化对方传送的数据，造成程序无法正常运行。
 ![img one](https://github.com/peace710/aidl/blob/master/IPC/img_1.png)
 ![img two](https://github.com/peace710/aidl/blob/master/IPC/img_2.png)
 
 
-####绑定远程服务端
+#### 绑定远程服务端
 通过Context的bindService方法对远程服务端进行绑定，intent设置包名是为了解决Android5.0之后需要显示调用服务的问题。
 ```
 private void bindService(){
@@ -231,6 +231,6 @@ private void getAppDetail(String id,String version){
     }
 }
 ```
-####运行结果
+#### 运行结果
 ![screen one](https://github.com/peace710/aidl/blob/master/IPC/image1.png)
 ![screen two](https://github.com/peace710/aidl/blob/master/IPC/image2.png)
